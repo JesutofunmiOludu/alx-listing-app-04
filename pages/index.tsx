@@ -1,17 +1,11 @@
 import { useEffect, useState } from "react";
 import api from "@/lib/api";
 import PropertyCard from "@/components/property/PropertyCard";
-
-interface Property {
-  id: number;
-  title: string;
-  price: number;
-  location: string;
-  image: string;
-}
+import Layout from "@/components/layout/Layout";
+import { PropertyProps } from "@/interfaces/index";
 
 export default function Home() {
-  const [properties, setProperties] = useState<Property[]>([]);
+  const [properties, setProperties] = useState<PropertyProps[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -30,14 +24,16 @@ export default function Home() {
     fetchProperties();
   }, []);
 
-  if (loading) return <p className="p-4">Loading properties...</p>;
-  if (error) return <p className="p-4 text-red-500">{error}</p>;
+  if (loading) return <Layout><p className="p-4 text-center">Loading properties...</p></Layout>;
+  if (error) return <Layout><p className="p-4 text-red-500 text-center">{error}</p></Layout>;
 
   return (
-    <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-      {properties.map((property) => (
-        <PropertyCard key={property.id} property={property} />
-      ))}
-    </div>
+    <Layout>
+      <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {properties.map((property) => (
+          <PropertyCard key={property.id} property={property} />
+        ))}
+      </div>
+    </Layout>
   );
 }
