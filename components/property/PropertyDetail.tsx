@@ -84,7 +84,7 @@ export default function PropertyDetail({ property }: { property: PropertyProps }
             Reserve Now
           </button>
           
-          <p className="text-center text-gray-500 text-sm mt-4">You won't be charged yet</p>
+          <p className="text-center text-gray-500 text-sm mt-4">You won&apos;t be charged yet</p>
         </div>
       </div>
       {/* Reviews Section */}
